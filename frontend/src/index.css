@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-line;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-bg text-ink font-body antialiased;
+  }
+  ::selection {
+    @apply bg-accent/30 text-ink;
+  }
+  :focus-visible {
+    outline: 2px solid theme('colors.blueprint.DEFAULT');
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .label-eyebrow {
+    @apply font-mono text-xs tracking-[0.18em] uppercase text-blueprint;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-sm bg-accent px-5 py-3 font-mono text-sm tracking-wide text-bg transition-colors hover:bg-accent-soft disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-sm border border-line px-5 py-3 font-mono text-sm tracking-wide text-ink transition-colors hover:border-blueprint hover:text-blueprint disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .field-label {
+    @apply block font-mono text-xs uppercase tracking-[0.14em] text-ink-muted mb-2;
+  }
+  .field-input {
+    @apply w-full rounded-sm border border-line bg-surface px-4 py-3 text-ink placeholder:text-ink-muted focus:border-blueprint focus:outline-none transition-colors;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@keyframes cursor-blink {
+  0%, 45% { opacity: 1; }
+  50%, 95% { opacity: 0; }
+  100% { opacity: 1; }
+}
+.cursor-blink {
+  animation: cursor-blink 1s step-end infinite;
+}
